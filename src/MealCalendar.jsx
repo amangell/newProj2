@@ -1,4 +1,3 @@
-// MealCalendar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
@@ -14,17 +13,16 @@ const MealCalendar = ({ meals }) => {
                     <div key={index} className={`meal-day ${day === "Sunday" ? "sunday" : ""}`}>
                         <h3>{day}</h3>
                         {meals[index] ? (
-                            <div>
-                                <img
-                                    src={meals[index].strMealThumb}
-                                    alt={meals[index].strMeal}
-                                    className="meal-image"
-                                />
-                                <h4>{meals[index].strMeal}</h4>
-                                <Link to={`/recipe/${meals[index].idMeal}`}>
-                                    <button>View Recipe</button>
-                                </Link>
-                            </div>
+                            <Link to={`/recipe/${meals[index].idMeal}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <div className="meal-container">
+                                    <img
+                                        src={meals[index].strMealThumb}
+                                        alt={meals[index].strMeal}
+                                        className="meal-image"
+                                    />
+                                    <h4>{meals[index].strMeal}</h4>
+                                </div>
+                            </Link>
                         ) : (
                             <p>Loading...</p>
                         )}
@@ -36,4 +34,7 @@ const MealCalendar = ({ meals }) => {
 };
 
 export default MealCalendar;
+
+
+
 

@@ -1,4 +1,3 @@
-// RecipePage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -6,14 +5,12 @@ const RecipePage = ({ meals }) => {
     const { idMeal } = useParams();
     const navigate = useNavigate();
 
-    // Find the specific meal in the meals array
     const meal = meals.find(m => m.idMeal === idMeal);
 
     if (!meal) {
         return <p>Recipe not found</p>;
     }
 
-    // Extract ingredients and measurements
     const ingredients = [];
     for (let i = 1; i <= 20; i++) {
         const ingredient = meal[`strIngredient${i}`];
@@ -23,13 +20,14 @@ const RecipePage = ({ meals }) => {
         }
     }
 
-    // Split instructions into separate steps
     const instructions = meal.strInstructions.split('.').map(step => step.trim()).filter(step => step);
 
     return (
         <div style={{ textAlign: 'center', padding: '20px' }}>
             <h1>{meal.strMeal}</h1>
-            <img src={meal.strMealThumb} alt={meal.strMeal} style={{ maxWidth: '100%', height: 'auto' }} />
+            <div className="recipe-image-container">
+                <img src={meal.strMealThumb} alt={meal.strMeal} className="recipe-image" />
+            </div>
             <p><strong>Category:</strong> {meal.strCategory}</p>
             <p><strong>Cuisine:</strong> {meal.strArea}</p>
 
@@ -53,5 +51,8 @@ const RecipePage = ({ meals }) => {
 };
 
 export default RecipePage;
+
+
+
 
 

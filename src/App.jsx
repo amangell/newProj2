@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MealCalendar from './MealCalendar';
@@ -9,7 +8,6 @@ function App() {
 
     useEffect(() => {
         if (meals.length === 0) {
-            // Fetch meals only if they haven't been fetched yet
             const fetchMeals = async () => {
                 const mealPromises = Array(7).fill().map(() =>
                     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
