@@ -21,6 +21,9 @@ function App() {
         }
     }, [meals]);
 
+console.log(meals)
+
+
     return (
         <Router>
             <Routes>

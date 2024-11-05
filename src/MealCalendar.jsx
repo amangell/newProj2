@@ -7,7 +7,7 @@ const MealCalendar = ({ meals }) => {
 
     return (
         <div className="calendar">
-            <h1>Weekly Meal Planner</h1>
+            <h1>Random Meal Planner</h1>
             <div className="meal-grid">
                 {daysOfWeek.map((day, index) => (
                     <div key={index} className={`meal-day ${day === "Sunday" ? "sunday" : ""}`}>

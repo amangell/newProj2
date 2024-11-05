@@ -41,7 +41,7 @@ const RecipePage = ({ meals }) => {
             <h2>Instructions</h2>
             <ol style={{ textAlign: 'left', maxWidth: '600px', margin: '0 auto' }}>
                 {instructions.map((step, index) => (
-                    <li key={index}>{step}.</li>
+                    <li key={index}>{step}</li>
                 ))}
             </ol>
 
