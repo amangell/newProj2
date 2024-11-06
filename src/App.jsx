@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import MealCalendar from './MealCalendar';
 import RecipePage from './RecipePage';
 
 function App() {
     const [meals, setMeals] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
         if (meals.length === 0) {
@@ -21,13 +23,29 @@ function App() {
         }
     }, [meals]);
 
-console.log(meals)
-
+    const handleSearchChange = async (query) => {
+        setSearchQuery(query);
+        if (query.length >= 2) {
+            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+            const data = await response.json();
+            setSuggestions(data.meals || []);
+        } else {
+            setSuggestions([]);
+        }
+    };
 
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<MealCalendar meals={meals} />} />
+                <Route path="/" element={
+                    <MealCalendar 
+                        meals={meals} 
+                        setMeals={setMeals} 
+                        searchQuery={searchQuery} 
+                        handleSearchChange={handleSearchChange} 
+                        suggestions={suggestions} 
+                    />
+                } />
                 <Route path="/recipe/:idMeal" element={<RecipePage meals={meals} />} />
             </Routes>
         </Router>
@@ -35,4 +53,5 @@ console.log(meals)
 }
 
 export default App;
+
 

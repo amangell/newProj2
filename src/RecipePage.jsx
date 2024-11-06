@@ -1,14 +1,28 @@
-import React from 'react';
+// RecipePage.jsx
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const RecipePage = ({ meals }) => {
     const { idMeal } = useParams();
     const navigate = useNavigate();
+    const [meal, setMeal] = useState(null);
 
-    const meal = meals.find(m => m.idMeal === idMeal);
+    useEffect(() => {
+        const existingMeal = meals.find(m => m.idMeal === idMeal);
+        if (existingMeal) {
+            setMeal(existingMeal);
+        } else {
+            const fetchMeal = async () => {
+                const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`);
+                const data = await response.json();
+                setMeal(data.meals[0]);
+            };
+            fetchMeal();
+        }
+    }, [idMeal, meals]);
 
     if (!meal) {
-        return <p>Recipe not found</p>;
+        return <p>Loading recipe...</p>;
     }
 
     const ingredients = [];
