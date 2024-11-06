@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import MealCalendar from './MealCalendar';
@@ -23,6 +24,7 @@ function App() {
         }
     }, [meals]);
 
+    // Handle search input and fetch suggestions
     const handleSearchChange = async (query) => {
         setSearchQuery(query);
         if (query.length >= 2) {
@@ -53,5 +55,7 @@ function App() {
 }
 
 export default App;
+
+
 
 

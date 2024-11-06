@@ -107,3 +107,68 @@ button:hover {
 .suggestion-item:hover {
   background-color: #f1f1f1;
 }
+
+
+/* Word Art Styling for Calendar Title with Animation */
+.calendar h1 {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  font-size: 3em;
+  color: #ff4500; /* Initial color */
+  text-shadow: 
+    2px 2px 0 #ff1493, /* Pink shadow */
+    -2px -2px 0 #1e90ff, /* Blue shadow */
+    2px -2px 0 #32cd32, /* Green shadow */
+    -2px 2px 0 #ffff54; /* Yellow shadow */
+  margin-bottom: 20px;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+/* Pulse and Color Change Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    color: #ff4500;
+    text-shadow:
+      2px 2px 0 #ff1493,
+      -2px -2px 0 #1e90ff,
+      2px -2px 0 #32cd32,
+      -2px 2px 0 #ffff54;
+  }
+  25% {
+    transform: scale(1.05);
+    color: #ff1493;
+    text-shadow:
+      2px 2px 0 #1e90ff,
+      -2px -2px 0 #32cd32,
+      2px -2px 0 #ffff54,
+      -2px 2px 0 #ff4500;
+  }
+  50% {
+    transform: scale(1.1);
+    color: #32cd32;
+    text-shadow:
+      2px 2px 0 #ffff54,
+      -2px -2px 0 #ff4500,
+      2px -2px 0 #ff1493,
+      -2px 2px 0 #1e90ff;
+  }
+  75% {
+    transform: scale(1.05);
+    color: #1e90ff;
+    text-shadow:
+      2px 2px 0 #ff4500,
+      -2px -2px 0 #ff1493,
+      2px -2px 0 #32cd32,
+      -2px 2px 0 #ffff54;
+  }
+  100% {
+    transform: scale(1);
+    color: #ff4500;
+    text-shadow:
+      2px 2px 0 #ff1493,
+      -2px -2px 0 #1e90ff,
+      2px -2px 0 #32cd32,
+      -2px 2px 0 #ffff54;
+  }
+}
+
